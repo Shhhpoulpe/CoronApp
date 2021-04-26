@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/countries_list_fragment_direction">
+
+    <fragment
+        android:id="@+id/countries_list_fragment_direction"
+        tools:layout="@layout/countries_list_fragment"
+        android:name="com.example.coronapp.ui.countries_list.CountriesListFragment"
+        android:label="CountriesListFragmentDirection">
+        <action
+            android:id="@+id/action_countriesListFragment_to_detailCountryFragment"
+            app:destination="@id/detail_country_fragment_direction" />
+    </fragment>
+    <fragment
+        android:id="@+id/detail_country_fragment_direction"
+        android:name="com.example.coronapp.ui.detail_country.DetailCountryFragment"
+        android:label="DetailCountryFragmentDirection"
+        tools:layout="@layout/detail_country_fragment" />
+</navigation>

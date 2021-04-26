@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.example.coronapp.models.Country
 
 class CountriesListViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
 
     val countriesList = MutableLiveData<List<Country>>()
 

@@ -3,6 +3,7 @@ package com.example.coronapp
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import com.example.coronapp.api.CountryInterface
 import com.example.coronapp.models.Country
 import retrofit2.Call
