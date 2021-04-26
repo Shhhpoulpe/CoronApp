@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.coronapp.R
 
-class DetailCountry : Fragment() {
+class DetailCountryFragment : Fragment() {
 
     companion object {
-        fun newInstance() = DetailCountry()
+        fun newInstance() = DetailCountryFragment()
     }
 
     private lateinit var viewModel: DetailCountryViewModel
