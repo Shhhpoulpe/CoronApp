@@ -1,16 +1,16 @@
 package com.example.coronapp.models
 
 data class Country(
-    val name: String,
-    val iso: String,
-    val totalCases: Int,
-    val activeCases: Int,
-    val deaths: Int,
-    val recovered: Int,
-    val critical: Int,
-    val tested: Int,
-    val deathRatio: Double,
-    val recoveryRatio: Double
+    val name: String? = null,
+    val iso: String? = null,
+    val totalCases: Int? = null,
+    val activeCases: Int? = null,
+    val deaths: Int? = null,
+    val recovered: Int? = null,
+    val critical: Int? = null,
+    val tested: Int? = null,
+    val deathRatio: Double? = null,
+    val recoveryRatio: Double? = null
 ) {
 
 }
