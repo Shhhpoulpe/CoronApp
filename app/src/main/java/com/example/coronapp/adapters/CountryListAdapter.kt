@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.coronapp.databinding.ItemCountryBinding
 import com.example.coronapp.models.Country
 
-class CountryListAdapter(private val countries: List<Country>) :
+class CountryListAdapter(
+    private val countries: List<Country>,
+    val onCountrySelected: (country: Country) -> Unit
+) :
     RecyclerView.Adapter<CountryListAdapter.CountryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
@@ -28,7 +31,7 @@ class CountryListAdapter(private val countries: List<Country>) :
 
         fun bind(country: Country) {
             binding.country = country
-            //binding.root.setOnClickListener { onCountrySelected(country) }
+            binding.root.setOnClickListener { onCountrySelected(country) }
         }
 
     }

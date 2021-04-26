@@ -21,4 +21,5 @@ class MainActivity : AppCompatActivity() {
 
     val service = retrofit.create(CountryInterface::class.java)
     val values = service.getCountryList()
+
 }

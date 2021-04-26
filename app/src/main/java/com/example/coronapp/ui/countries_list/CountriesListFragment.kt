@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.coronapp.R
 import com.example.coronapp.adapters.CountryListAdapter
@@ -31,8 +32,15 @@ class CountriesListFragment : Fragment() {
             inflater, R.layout.countries_list_fragment, container, false
         )
 
+
         viewModel.countriesList.observe(viewLifecycleOwner, { countries ->
-            val countryListAdapter = CountryListAdapter(countries)
+            val countryListAdapter = CountryListAdapter(countries) { country ->
+                Toast.makeText(
+                    context,
+                    "Country name : " + country.name + ", Total cases : " + country.totalCases.toString() + ", Active cases : " + country.activeCases.toString(),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
             binding.recyclerCountries.adapter = countryListAdapter
         })
 
