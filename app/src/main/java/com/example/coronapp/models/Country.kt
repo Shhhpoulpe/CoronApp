@@ -13,5 +13,4 @@ data class Country(
     val recoveryRatio: Double
 ) {
 
-
 }
