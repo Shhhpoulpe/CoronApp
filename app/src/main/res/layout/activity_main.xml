@@ -7,10 +7,11 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <fragment
+        android:id="@+id/list_item"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        tools:context=".MainActivity" />
-
+        android:name="com.example.coronapp.ui.countries_list.CountriesList"
+        tools:layout="@layout/countries_list_fragment" />
 
 </layout>
