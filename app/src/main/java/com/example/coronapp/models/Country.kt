@@ -1,16 +1,13 @@
 package com.example.coronapp.models
 
-data class Country(
-    val name: String? = null,
-    val iso: String? = null,
-    val totalCases: Int? = null,
-    val activeCases: Int? = null,
-    val deaths: Int? = null,
-    val recovered: Int? = null,
-    val critical: Int? = null,
-    val tested: Int? = null,
-    val deathRatio: Double? = null,
-    val recoveryRatio: Double? = null
-) {
 
-}
+import com.google.gson.annotations.SerializedName
+
+data class Country(
+    @SerializedName("data")
+    var `data`: List<Data>,
+    @SerializedName("status")
+    val status: Int,
+    @SerializedName("type")
+    val type: String
+)

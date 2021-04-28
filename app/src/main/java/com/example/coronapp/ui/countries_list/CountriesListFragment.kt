@@ -10,15 +10,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.adapters.SearchViewBindingAdapter
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.coronapp.R
 import com.example.coronapp.adapters.CountryListAdapter
 import com.example.coronapp.databinding.CountriesListFragmentBinding
+import com.example.coronapp.models.Country
 import com.example.coronapp.ui.detail_country.DetailCountryFragment
+import kotlin.math.log
 
 class CountriesListFragment : Fragment() {
 
@@ -28,6 +32,7 @@ class CountriesListFragment : Fragment() {
     }*/
 
     private lateinit var viewModel: CountriesListViewModel
+    private var countryListAdapter: CountryListAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,39 +46,39 @@ class CountriesListFragment : Fragment() {
         )
 
 
-        viewModel.countriesList.observe(viewLifecycleOwner, { countries ->
-            val countryListAdapter = CountryListAdapter(countries) { country ->
-
-                Toast.makeText(
-                    context,
-                    "Country name : " + country.name + ", Total cases : " + country.totalCases.toString() + ", Active cases : " + country.activeCases.toString(),
-                    Toast.LENGTH_LONG
-                ).show()
-
+        viewModel.countriesResponseSuccess.observe(viewLifecycleOwner, { it ->
+            countryListAdapter = CountryListAdapter(it.data) {
                 val action =
-                    CountriesListFragmentDirections.actionCountriesListFragmentToDetailCountryFragment()
-                view?.findNavController()?.navigate(action)
+                    CountriesListFragmentDirections.actionCountriesListFragmentToDetailCountryFragment(
+                        it.name
+                    )
+                findNavController().navigate(action)
             }
             binding.recyclerCountries.adapter = countryListAdapter
         })
 
+        viewModel.countriesResponseError.observe(viewLifecycleOwner, {
+            Log.d("ErrorCallAPI", it)
+        })
+
         viewModel.getCountries()
 
-        binding.searchEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                Log.d("beforeTextChanged", "$p0")
+        binding.searchEditText.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return false
             }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                Log.d("OnTextChanged", "$p0")
-                // Call API
+            override fun onQueryTextChange(text: String?): Boolean {
+                if (text != null) {
+                    Log.d("onQueryTextChange", "$text")
+                    countryListAdapter?.countries = viewModel.getCountryByName(text)
+                    binding.recyclerCountries.adapter = countryListAdapter
+                }
+                return false
             }
-
-            override fun afterTextChanged(p0: Editable?) {
-                Log.d("afterTextChanged", "$p0")
-            }
-
         })
+
         return binding.root
     }
 

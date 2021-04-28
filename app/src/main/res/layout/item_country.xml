@@ -7,7 +7,7 @@
 
         <variable
             name="country"
-            type="com.example.coronapp.models.Country" />
+            type="com.example.coronapp.models.Data" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,17 +24,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="USA" />
-
-        <TextView
-            android:id="@+id/totalCases"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="@{String.valueOf(country.totalCases)}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="320000 cases" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

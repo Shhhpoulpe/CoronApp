@@ -18,5 +18,7 @@
         android:id="@+id/detail_country_fragment_direction"
         android:name="com.example.coronapp.ui.detail_country.DetailCountryFragment"
         android:label="DetailCountryFragmentDirection"
-        tools:layout="@layout/detail_country_fragment" />
+        tools:layout="@layout/detail_country_fragment">
+        <argument android:name="country" />
+    </fragment>
 </navigation>

@@ -1,10 +1,13 @@
 package com.example.coronapp.api
 
 import com.example.coronapp.models.Country
-import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface CountryInterface {
-    @GET("api/v1/summary/latest")
-    fun getCountryList(): Call<List<Country>>
+
+    @GET("regions/")
+    suspend fun getCountries(): Response<Country>
+
 }
